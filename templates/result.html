@@ -1,0 +1,24 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    BDO Individual
+{% endblock %}
+
+{% block main %}
+    <table class="center">
+        <tr>
+            <th>Name</th>
+            <th>Price compared to avg</th>
+            <th>Volatility</th>
+            <th>Depth(daily)</th>
+        </tr>
+        {% for item in item_list %}
+        <tr>
+            <td>{{item.Name}}</td>
+            <td>{{item.Price_compared}}</td>
+            <td>{{item.Volatility}}</td>
+            <td>{{item.Silver_avg_daily}}</td>
+        </tr>
+    </table>
+        {% endfor %}
+{% endblock %}

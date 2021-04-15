@@ -1,0 +1,18 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    BDO Index
+{% endblock %}
+
+{% block main %}
+    <h3>This site allows you to both search for individual items and scan the entire market for items with certain market stats.</h3>
+    <br>
+    <h3>It will not work completely until it has ran for 24 hours and 2 data points for volume have been created</h3>
+    <br>
+    <div><b>Volatility</b> is calculated using the average price difference between the daily price and the total average over the recorded days. Use the average as a context.</div>
+    <h5>Average Volatility = {{ average_volatility }}</h5>
+    <br>
+    <div><b>Price % of avg</b> simply refers to the % of the average the current price is, meaning if an item averages a price of 100 silver and is now at 50 the Price % of avg would be 50%.</div>
+    <br>
+    <div><b>Depth</b> refers to the total amount of silver through which an item is traded per day on average, higher depth = harder to crash the market.</div>
+{% endblock %}

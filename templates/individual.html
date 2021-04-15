@@ -1,0 +1,46 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    BDO Individual
+{% endblock %}
+
+{% block main %}
+    <form action="/individual" method="post">
+    <div class="form-group">
+    <input autocomplete="off" autofocus class="form-control" name="item" placeholder="Item name" type="text">
+        Show:
+        <select name="limit">
+            <option value="50">50</option>
+            <option value="500">500</option>
+            <option value="1000">1000</option>
+        </select>
+    </div>
+    <button class="btn btn-primary" type="submit">Search</button>
+    </form>
+    <table class="center">
+        <tr>
+            <th>Name</th>
+            <th>Price % of avg.</th>
+            <th>Volatility</th>
+            <th>Depth(daily)</th>
+            <th>Link</th>
+        </tr>
+        {% for item in item_list %}
+        <tr>
+            <td>{{item.Name}}</td>
+            <td>{{item.Price_compared}}%</td>
+            <td>{{item.Volatility}}</td>
+            <td>{{item.Silver_avg_daily}}</td>
+            <td>
+            <form method="post" action="/details" class="inline">
+              <input type="hidden" name="item_name" value='{{item.Name}}'>
+              <button type="submit" name="submit_param" value="submit_value" class="btn btn-primary">
+                Details
+              </button>
+            </form>
+            </td>
+        </tr>
+
+        {% endfor %}
+        </table>
+{% endblock %}

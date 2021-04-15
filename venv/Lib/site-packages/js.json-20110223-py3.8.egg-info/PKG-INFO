@@ -1,0 +1,44 @@
+Metadata-Version: 1.0
+Name: js.json
+Version: 20110223
+Summary: Fanstatic packaging of JSON
+Home-page: UNKNOWN
+Author: Fanstatic Developers
+Author-email: fanstatic@googlegroups.com
+License: BSD
+Description: js.json
+        *******
+        
+        Introduction
+        ============
+        
+        This library packages `JSON`_ for `fanstatic`_.
+        
+        .. _`fanstatic`: http://fanstatic.org
+        .. _`JSON`: http://www.json.org/js.html
+        
+        This requires integration between your web framework and ``fanstatic``,
+        and making sure that the original resources (shipped in the ``resources``
+        directory in ``js.json``) are published to some URL.
+        
+        
+        How to use?
+        ===========
+        
+        
+        You can import ``json`` from ``js.json`` and ``need`` it where you want
+        these resources to be included on a page::
+        
+          >>> from js.json import json
+          >>> json.need()
+        
+        
+        CHANGES
+        *******
+        
+        20110223 (2011-05-11)
+        =====================
+        
+        - Initial release from https://github.com/douglascrockford/JSON-js/
+        
+Platform: UNKNOWN

@@ -1,0 +1,86 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    BDO Individual
+{% endblock %}
+
+{% block main %}
+    <form action="/analyze" method="post">
+        <input autocomplete="off" autofocus class="form-control" name="volatility" placeholder="minimum Volatility" type="number">
+        <input autocomplete="off" autofocus class="form-control" name="price_compared" placeholder="max Price %" type="number">
+        <input autocomplete="off" autofocus class="form-control" name="depth" placeholder="minimum Depth" type="number">
+        <br>
+        Search in category:
+        <select name="category">
+            <option value="all">All</option>
+            <option value="Necklace">Necklace</option>
+            <option value="Earring">Earring</option>
+            <option value="Belt">Belt</option>
+            <option value="Ores">Ores</option>
+            <option value="Plants">Plants</option>
+            <option value="Seed/Fruit">Seed/Fruit</option>
+            <option value="Leather">Leather</option>
+            <option value="Blood">Blood</option>
+            <option value="Meat">Meat</option>
+            <option value="Seafood">Seafood</option>
+            <option value="Misc.">Misc.</option>
+            <option value="Black Stone">Black Stone</option>
+            <option value="Upgrade">Upgrade</option>
+            <option value="Offensive Elixir">Offensive Elixir</option>
+            <option value="Defensive Elixir">Defensive Elixir</option>
+            <option value="Functional Elixir">Functional Elixir</option>
+            <option value="Food">Food</option>
+            <option value="Potion">Potion</option>
+            <option value="Siege Items">Siege Items</option>
+            <option value="Item Parts">Item Parts</option>
+            <option value="Other Consumables">Other Consumables</option>
+            <option value="Main Weapon">Main Weapon</option>
+            <option value="Sub-weapon">Sub-weapon</option>
+            <option value="Helmet">Helmet</option>
+            <option value="Armor">Armor</option>
+            <option value="Gloves">Gloves</option>
+            <option value="Shoes">Shoes</option>
+            <option value="Versatile">Versatile</option>
+            <option value="Awakening Weapon">Awakening Weapon</option>
+        </select>
+        Order by:
+        <select name="order">
+            <option value="volatility">Volatility</option>
+            <option value="price">Price</option>
+            <option value="depth">Depth</option>
+        </select>
+        Show:
+        <select name="limit">
+            <option value="50">50</option>
+            <option value="500">500</option>
+            <option value="1000">1000</option>
+        </select>
+    <button class="btn btn-primary" type="submit">Search</button>
+    </form>
+        <table class="center">
+        <tr>
+            <th>Name</th>
+            <th>Price % of avg.</th>
+            <th>Volatility</th>
+            <th>Depth(daily)</th>
+            <th>Link</th>
+        </tr>
+        {% for item in item_list_analyze %}
+        <tr>
+            <td>{{item.Name}}
+            </td>
+            <td>{{item.Price_compared}}%</td>
+            <td>{{item.Volatility}}</td>
+            <td>{{item.Silver_avg_daily}}</td>
+            <td>
+            <form method="post" action="/details" class="inline">
+              <input type="hidden" name="item_name" value='{{item.Name}}'>
+              <button type="submit" name="submit_param" value="submit_value" class="btn btn-primary">
+                Details
+              </button>
+            </form>
+            </td>
+        </tr>
+        {% endfor %}
+        </table>
+{% endblock %}

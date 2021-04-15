@@ -1,0 +1,62 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    BDO Details
+{% endblock %}
+
+{% block main %}
+    <h1>{{ item.Name }}</h1>
+    <script src="static/package/dist/chart.js"></script>
+    <div>
+      <canvas id="myChart"></canvas>
+    </div>
+
+    <script>
+const labels = [
+    {%  for price in price_history %}
+        '{{ price.Date }}',
+    {% endfor %} ];
+const data = {
+  labels: labels,
+  datasets: [{
+    label: 'Price History',
+    backgroundColor: 'rgb(255, 99, 132)',
+    borderColor: 'rgb(255, 99, 132)',
+    data: [ {% for price in price_history %}
+        {{ price.Price }},
+        {% endfor %}
+        ],
+  }]
+};
+const config = {
+  type: 'line',
+  data,
+  options: {}
+  };
+ var myChart = new Chart(
+    document.getElementById('myChart'),
+    config
+  );
+
+    </script>
+
+
+
+
+
+
+
+
+    <table class="center">
+        <tr>
+            <th>Price compared to avg</th>
+            <th>Volatility</th>
+            <th>Depth(daily)</th>
+        </tr>
+        <tr>
+            <td>{{item.Price_compared}}%</td>
+            <td>{{item.Volatility}}</td>
+            <td>{{item.Silver_avg_daily}}</td>
+        </tr>
+    </table>
+{% endblock %}
