@@ -78,7 +78,6 @@ def update():
                 total_time = total_time / SECONDS_IN_DAY
                 if total_time > 0.01:
                     trades_avg = (trades_max - trades_min) / total_time
-                    print(trades_avg, item_info[3])
                     daily_silver = float(trades_avg) * float(item_info[3])
                 else:
                     trades_avg = 0
@@ -208,10 +207,7 @@ def get_initial_data(main, sub):
 
 #Checks through all items based on the name input by the user and sends it back to app.py as a list of items
 def query(item, limit):
-    print(item)
-    print(limit, "limit")
     item = "%" + item + "%"
-    print(item)
     response = db.execute("SELECT items.Name, Volatility.Volatility, price_avg.Price_compared, depth.Silver_avg_daily "
                           "FROM items "
                           "JOIN Volatility ON (items.Id = Volatility.Id) "
@@ -232,11 +228,8 @@ def query_analyze(volatility, price_compared, depth, category, order, limit):
         elif order == "depth":
             response = db.execute("SELECT items.Name, Volatility.Volatility, price_avg.Price_compared, depth.Silver_avg_daily FROM items JOIN Volatility ON (items.Id = Volatility.Id) JOIN price_avg ON (items.Id = price_avg.Id) JOIN depth ON (items.Id = depth.Id) WHERE Volatility.Volatility > ? and price_avg.Price_compared < ? and depth.Silver_avg_daily > ? ORDER BY depth.Silver_avg_daily DESC LIMIT ?",volatility, price_compared, depth, limit)
     else:
-        print(category)
         Mcategory = Categories[category][0]
         Scategory = Categories[category][1]
-        print(Mcategory)
-        print(Scategory)
         if order == "volatility":
             response = db.execute("SELECT items.Name, Volatility.Volatility, price_avg.Price_compared, depth.Silver_avg_daily FROM items JOIN Volatility ON (items.Id = Volatility.Id) JOIN price_avg ON (items.Id = price_avg.Id) JOIN depth ON (items.Id = depth.Id) WHERE Volatility.Volatility > ? and price_avg.Price_compared < ? and depth.Silver_avg_daily > ? and Mcategory = ? and Scategory = ? ORDER BY Volatility.Volatility DESC LIMIT ?", volatility, price_compared, depth, Mcategory, Scategory, limit)
         elif order == "price":
