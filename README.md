@@ -4,7 +4,7 @@ https://streamable.com/jhcyh6
 
 BDO-Market is a flask project that uses the Market API of the MMO videogame "Black Desert Online" and allows the user search for certain properties of said items. The main properties are "Volatility", "Price % of avg." and "Depth".
 
-**DISCLAIMER**: This App will not work properly until there have been at least two data points made using the update function from helpers.py, preferably more than two data points over days or weeks. The more data has been collected the more accurate "Depth" will be. With just one datapoint "Depth" will always be 0.
+**DISCLAIMER**: This App will not work properly until there have been at least two data points made using the update function from helpers.py, preferably more than two data points over days or weeks. The more data has been collected the more accurate "Depth" will be. With just one datapoint "Depth" will always be 0. The program by itself will run the update command on launch if set to do so and every 24 hours after that. 
 
 **Volatility**: This stat is calculated by taking the average of all price entries in the database, calculating the difference between the daily average to the total average and then taking the average of that difference before comparing it to the total average. This stat displays the tendency for an item to change its price, items with low volatility tend to have stable prices while items with high volatility tend to change price a lot or drastically.
 
